@@ -6,6 +6,7 @@ const Attraction = props => {
     const [modalIsOpen, setIsOpen] = useState(false)
 
     const toggleDialog = () => {
+        dialog = document.querySelector(`#dialog--time--${props.ride.id}`)
         setIsOpen(!modalIsOpen)
 
         if (modalIsOpen) {
@@ -28,15 +29,14 @@ const Attraction = props => {
                 "starttime": starttime.current.value
             })
         })
-            .then(response => response.json())
-            .then(() => {
-                console.log("Added")
-                props.history.push("/myitinerary")
-            })
+        .then(response => response.json())
+        .then(() => {
+            console.log("Added")
+            props.history.push("/myitinerary")
+        })
     }
 
     useEffect(() => {
-        dialog = document.querySelector("#dialog--time")
 
         const handler = e => {
             // Close all dialogs when ESC is pressed, and close search field
@@ -54,7 +54,7 @@ const Attraction = props => {
 
     return (
         <>
-            <dialog id="dialog--time" className="dialog--time">
+            <dialog id={`dialog--time--${props.ride.id}`} className="dialog--time">
                 <label htmlFor="starttime">When do you want to ride?</label>
                 <input ref={starttime} type="text" name="starttime" autoFocus required />
 

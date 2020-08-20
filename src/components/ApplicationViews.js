@@ -5,6 +5,7 @@ import Register from "./auth/Register"
 import Login from "./auth/Login"
 import ParkExplorer from "./home/ParkExplorer"
 import MyItinerary from "./home/MyItinerary"
+import AttractionForm from "./home/AttractionForm";
 
 
 const ApplicationViews = () => {
@@ -41,6 +42,7 @@ const ApplicationViews = () => {
             />
 
             <Route
+            exact
                 path="/attractions" render={props => {
                     return (
                         <>
@@ -50,6 +52,11 @@ const ApplicationViews = () => {
                     )
                 }}
             />
+              <Route
+                path="/attractions/new" render={(props) => {
+                    return <AttractionForm {...props} />;
+                 }}
+             />
 
             <Route
                 path="/myitinerary" render={props => {
